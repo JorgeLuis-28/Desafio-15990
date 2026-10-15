@@ -9,49 +9,49 @@ namespace prueba1EP
         static void Main(string[] args)
         {
             int maxExpedientes = 100;
-
             // Arreglos paralelos para los datos de la posta
             string[] codigos = new string[maxExpedientes];
             string[] tiposDocumento = new string[maxExpedientes];
             string[] remitentes = new string[maxExpedientes];
             string[] gremiosDestino = new string[maxExpedientes];
             string[] fechas = new string[maxExpedientes];
-
             int totalExpedientes = 0;
             string nombreArchivo = "expedientes_posta.txt";
 
-            // Cargar datos automáticamente al iniciar el programa[cite: 1]
+            // Cargar datos automáticamente al iniciar el programa
             cargar_desde_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, ref totalExpedientes, nombreArchivo);
-
             int opcion;
-
             do
             {
                 Console.Clear();
-                mostrar_menu(); //[cite: 1]
+                mostrar_menu();
                 opcion = int.Parse(Console.ReadLine());
-
                 switch (opcion)
                 {
                     case 1:
-                        registrar_expediente(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, ref totalExpedientes, maxExpedientes); //[cite: 1]
-                        guardar_en_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes, nombreArchivo); //[cite: 1]
+                        registrar_expediente(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, ref totalExpedientes, maxExpedientes);
+                        guardar_en_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes, nombreArchivo);
                         break;
 
                     case 2:
-                        listar_expedientes(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
+                        listar_expedientes(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes);
                         break;
 
                     case 3:
-                        buscar_por_codigo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
+                        buscar_por_codigo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes);
                         break;
 
                     case 4:
-                        //ordenar_expedientes(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
-                        //break;
+                        ordenar_expedientes(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes);
+                        break;
+
+                    case 5:
+                        eliminar_expediente(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, ref totalExpedientes);
+                        guardar_en_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes, nombreArchivo);
+                        break;
 
                     case 0:
-                        guardar_en_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes, nombreArchivo); //[cite: 1]
+                        guardar_en_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes, nombreArchivo);
                         Console.WriteLine("\nSaliendo del sistema...");
                         break;
 
@@ -60,24 +60,22 @@ namespace prueba1EP
                         Console.ReadKey();
                         break;
                 }
-
             } while (opcion != 0);
         }
 
         static void mostrar_menu()
         {
             Console.Clear();
-
             // Caja superior con el título del sistema en color Azul
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\t\t\t\t┌--------------------------------------------┐");
             Console.WriteLine("\t\t\t\t|                                            |");
-            Console.WriteLine("\t\t\t\t|         SISTEMA - POSTA MÉDICA             |");
+            Console.WriteLine("\t\t\t\t|          SISTEMA - POSTA MÉDICA            |");
             Console.WriteLine("\t\t\t\t|                                            |");
             Console.WriteLine("\t\t\t\t└--------------------------------------------┘");
             Console.ResetColor();
 
-            // Caja inferior con las opciones del menú en color Cian (Opción 0 para salir)
+            // Caja inferior con las opciones del menú en color Cian
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\t\t\t\t┌--------------------------------------------┐");
             Console.WriteLine("\t\t\t\t|                                            |");
@@ -85,20 +83,19 @@ namespace prueba1EP
             Console.WriteLine("\t\t\t\t|  2) Listar expedientes                     |");
             Console.WriteLine("\t\t\t\t|  3) Buscar por código                      |");
             Console.WriteLine("\t\t\t\t|  4) Ordenar expedientes                    |");
+            Console.WriteLine("\t\t\t\t|  5) Eliminar expediente                    |");
             Console.WriteLine("\t\t\t\t|  0) Salir                                  |");
             Console.WriteLine("\t\t\t\t|                                            |");
             Console.WriteLine("\t\t\t\t└--------------------------------------------┘");
             Console.ResetColor();
-
             Console.Write("\n\t\t\t\tSeleccione una opción: ");
-         
         }
 
         static bool validar_datos(string valor, string nombreCampo)
         {
             if (string.IsNullOrWhiteSpace(valor))
             {
-                Console.WriteLine($"Error: El campo '{nombreCampo}' no puede estar vacío[cite: 1].");
+                Console.WriteLine($"Error: El campo '{nombreCampo}' no puede estar vacío.");
                 return false;
             }
             return true;
@@ -108,7 +105,6 @@ namespace prueba1EP
         {
             Console.Clear();
             Console.WriteLine("--- REGISTRAR EXPEDIENTE ---");
-
             if (totalExpedientes >= maxExpedientes)
             {
                 Console.WriteLine("Capacidad máxima alcanzada.");
@@ -117,13 +113,8 @@ namespace prueba1EP
             {
                 string tipoDoc, remitente, gremio, fecha;
 
-                // Validación de campos obligatorios[cite: 1]
                 do
                 {
-                    /* Diferencia:
-                    Oficio: Comunicación oficial entre instituciones o autoridades.
-                    Solicitud: Petición personal que hace un ciudadano a una entidad.
-                    */
                     Console.Write("Ingrese tipo de documento (ej. Oficio, Solicitud): ");
                     tipoDoc = Console.ReadLine();
                 } while (!validar_datos(tipoDoc, "Tipo de Documento"));
@@ -145,21 +136,19 @@ namespace prueba1EP
                     Console.Write("Ingrese fecha de registro (DD/MM/AAAA): ");
                     fecha = Console.ReadLine();
                 } while (!validar_datos(fecha, "Fecha"));
-                // Genera un código correlativo automático (ej: EXP-1, EXP-2) sumando 1 al total actual.
+
                 string codigo = "EXP-" + (totalExpedientes + 1);
-                // Almacena cada dato ingresado en la posición libre actual de los arreglos paralelos.
+
                 codigos[totalExpedientes] = codigo;
                 tiposDoc[totalExpedientes] = tipoDoc;
                 remitentes[totalExpedientes] = remitente;
                 gremios[totalExpedientes] = gremio;
                 fechas[totalExpedientes] = fecha;
-                // Incrementa en 1 el contador global para indicar que hay un trámite más registrado.
-                totalExpedientes++;
 
+                totalExpedientes++;
                 Console.WriteLine("\n¡Expediente registrado con éxito!");
                 Console.WriteLine("Código asignado: " + codigo);
             }
-
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
@@ -185,7 +174,6 @@ namespace prueba1EP
                 }
                 Console.WriteLine("--------------------------------");
             }
-
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
@@ -196,7 +184,6 @@ namespace prueba1EP
             Console.WriteLine("--- BUSCAR POR CÓDIGO ---");
             Console.Write("Ingrese el código a buscar (ej. EXP-1): ");
             string buscar = Console.ReadLine();
-
             bool encontrado = false;
             for (int i = 0; i < totalExpedientes; i++)
             {
@@ -212,12 +199,10 @@ namespace prueba1EP
                     break;
                 }
             }
-
             if (!encontrado)
             {
                 Console.WriteLine("\nNo se encontró ningún expediente con ese código.");
             }
-
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
@@ -257,7 +242,6 @@ namespace prueba1EP
                         }
                     }
                 }
-
                 Console.WriteLine("\n¡Expedientes ordenados con éxito!\n");
                 for (int i = 0; i < totalExpedientes; i++)
                 {
@@ -270,7 +254,75 @@ namespace prueba1EP
                 }
                 Console.WriteLine("--------------------------------");
             }
+            Console.WriteLine("\nPresione cualquier tecla para continuar...");
+            Console.ReadKey();
+        }
 
+        static void eliminar_expediente(string[] codigos, string[] tiposDoc, string[] remitentes, string[] gremios, string[] fechas, ref int totalExpedientes)
+        {
+            Console.Clear();
+            Console.WriteLine("--- ELIMINAR EXPEDIENTE ---");
+            if (totalExpedientes == 0)
+            {
+                Console.WriteLine("No hay expedientes registrados para eliminar.");
+            }
+            else
+            {
+                Console.Write("Ingrese el código del expediente a eliminar (ej. EXP-1): ");
+                string codigoBuscar = Console.ReadLine();
+                int indiceEncontrado = -1;
+
+                // Buscar el índice del expediente
+                for (int i = 0; i < totalExpedientes; i++)
+                {
+                    if (codigos[i].Equals(codigoBuscar, StringComparison.OrdinalIgnoreCase))
+                    {
+                        indiceEncontrado = i;
+                        break;
+                    }
+                }
+
+                if (indiceEncontrado == -1)
+                {
+                    Console.WriteLine("\nNo se encontró ningún expediente con ese código.");
+                }
+                else
+                {
+                    // Mostrar datos del elemento a eliminar para confirmación
+                    Console.WriteLine("\nExpediente encontrado:");
+                    Console.WriteLine("Tipo de Documento: " + tiposDoc[indiceEncontrado]);
+                    Console.WriteLine("Remitente: " + remitentes[indiceEncontrado]);
+                    Console.Write("\n¿Está seguro de que desea eliminarlo? (S/N): ");
+                    string confirmacion = Console.ReadLine();
+
+                    if (confirmacion != null && confirmacion.Equals("S", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Desplazar los elementos hacia la izquierda para rellenar el espacio
+                        for (int i = indiceEncontrado; i < totalExpedientes - 1; i++)
+                        {
+                            codigos[i] = codigos[i + 1];
+                            tiposDoc[i] = tiposDoc[i + 1];
+                            remitentes[i] = remitentes[i + 1];
+                            gremios[i] = gremios[i + 1];
+                            fechas[i] = fechas[i + 1];
+                        }
+
+                        // Limpiar la última posición sobrante
+                        codigos[totalExpedientes - 1] = null;
+                        tiposDoc[totalExpedientes - 1] = null;
+                        remitentes[totalExpedientes - 1] = null;
+                        gremios[totalExpedientes - 1] = null;
+                        fechas[totalExpedientes - 1] = null;
+
+                        totalExpedientes--;
+                        Console.WriteLine("\n¡Expediente eliminado con éxito!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nOperación cancelada.");
+                    }
+                }
+            }
             Console.WriteLine("\nPresione cualquier tecla para continuar...");
             Console.ReadKey();
         }
