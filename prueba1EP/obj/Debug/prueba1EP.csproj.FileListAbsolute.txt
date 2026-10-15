@@ -1,0 +1,7 @@
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\bin\Debug\prueba1EP.exe.config
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\bin\Debug\prueba1EP.exe
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\bin\Debug\prueba1EP.pdb
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\obj\Debug\prueba1EP.csproj.AssemblyReference.cache
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\obj\Debug\prueba1EP.csproj.CoreCompileInputs.cache
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\obj\Debug\prueba1EP.exe
+C:\Users\JORGE LUIS\Documents\Nueva carpeta\proyecto-laboratorio\prueba1EP\prueba1EP\obj\Debug\prueba1EP.pdb
