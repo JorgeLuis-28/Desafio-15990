@@ -275,64 +275,64 @@ namespace prueba1EP
             Console.ReadKey();
         }
 
-        static void Intercambiar(ref string a, ref string b)
-        {
-            string temp = a;
-            a = b;
-            b = temp;
-        }
+//        static void Intercambiar(ref string a, ref string b)
+//        {
+//            string temp = a;
+//            a = b;
+//            b = temp;
+//        }
 
-        static void guardar_en_archivo(string[] codigos, string[] tiposDoc, string[] remitentes, string[] gremios, string[] fechas, int totalExpedientes, string nombreArchivo)
-        {
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(nombreArchivo))
-                {
-                    sw.WriteLine(totalExpedientes);
-                    for (int i = 0; i < totalExpedientes; i++)
-                    {
-                        sw.WriteLine(codigos[i]);
-                        sw.WriteLine(tiposDoc[i]);
-                        sw.WriteLine(remitentes[i]);
-                        sw.WriteLine(gremios[i]);
-                        sw.WriteLine(fechas[i]);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al guardar en archivo: " + ex.Message);
-            }
-        }
+//        static void guardar_en_archivo(string[] codigos, string[] tiposDoc, string[] remitentes, string[] gremios, string[] fechas, int totalExpedientes, string nombreArchivo)
+//        {
+//            try
+//            {
+//                using (StreamWriter sw = new StreamWriter(nombreArchivo))
+//                {
+//                    sw.WriteLine(totalExpedientes);
+//                    for (int i = 0; i < totalExpedientes; i++)
+//                    {
+//                        sw.WriteLine(codigos[i]);
+//                        sw.WriteLine(tiposDoc[i]);
+//                        sw.WriteLine(remitentes[i]);
+//                        sw.WriteLine(gremios[i]);
+//                        sw.WriteLine(fechas[i]);
+//                    }
+//                }
+//            }
+//            catch (Exception ex)
+//            {
+//                Console.WriteLine("Error al guardar en archivo: " + ex.Message);
+//            }
+//        }
 
-        static void cargar_desde_archivo(string[] codigos, string[] tiposDoc, string[] remitentes, string[] gremios, string[] fechas, ref int totalExpedientes, string nombreArchivo)
-        {
-            if (File.Exists(nombreArchivo))
-            {
-                try
-                {
-                    using (StreamReader sr = new StreamReader(nombreArchivo))
-                    {
-                        string linea = sr.ReadLine();
-                        if (linea != null)
-                        {
-                            totalExpedientes = int.Parse(linea);
-                            for (int i = 0; i < totalExpedientes; i++)
-                            {
-                                codigos[i] = sr.ReadLine();
-                                tiposDoc[i] = sr.ReadLine();
-                                remitentes[i] = sr.ReadLine();
-                                gremios[i] = sr.ReadLine();
-                                fechas[i] = sr.ReadLine();
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    totalExpedientes = 0;
-                }
-            }
-        }
-    }
-}
+//        static void cargar_desde_archivo(string[] codigos, string[] tiposDoc, string[] remitentes, string[] gremios, string[] fechas, ref int totalExpedientes, string nombreArchivo)
+//        {
+//            if (File.Exists(nombreArchivo))
+//            {
+//                try
+//                {
+//                    using (StreamReader sr = new StreamReader(nombreArchivo))
+//                    {
+//                        string linea = sr.ReadLine();
+//                        if (linea != null)
+//                        {
+//                            totalExpedientes = int.Parse(linea);
+//                            for (int i = 0; i < totalExpedientes; i++)
+//                            {
+//                                codigos[i] = sr.ReadLine();
+//                                tiposDoc[i] = sr.ReadLine();
+//                                remitentes[i] = sr.ReadLine();
+//                                gremios[i] = sr.ReadLine();
+//                                fechas[i] = sr.ReadLine();
+//                            }
+//                        }
+//                    }
+//                }
+//                catch (Exception)
+//                {
+//                    totalExpedientes = 0;
+//                }
+//            }
+//        }
+//    }
+//}
