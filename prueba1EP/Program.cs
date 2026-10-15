@@ -43,12 +43,12 @@ namespace prueba1EP
                         break;
 
                     case 3:
-                        buscar_por_codigo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
-                        break;
+                        //buscar_por_codigo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
+                        //break;
 
                     case 4:
-                        ordenar_expedientes(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
-                        break;
+                        //ordenar_expedientes(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes); //[cite: 1]
+                        //break;
 
                     case 0:
                         guardar_en_archivo(codigos, tiposDocumento, remitentes, gremiosDestino, fechas, totalExpedientes, nombreArchivo); //[cite: 1]
